@@ -1,0 +1,32 @@
+{
+  "banners": [
+    {
+      "title": "Summer Sale",
+      "description": "Don't miss out on our summer sale – up to 50% off!",
+      "cta": "Shop Now",
+      "image": "/images/summer-sale.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/5/square.png"
+    },
+    {
+      "title": "New Arrivals",
+      "description": "Check out our new arrivals for the season.",
+      "cta": "Browse New Styles",
+      "image": "/images/new-arrivals.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png"
+    },
+    {
+      "title": "Exclusive Offer",
+      "description": "Get exclusive access to our special offers.",
+      "cta": "Learn More",
+      "image": "/images/exclusive-offer.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/1/square.png"
+    },
+    {
+      "title": "Winter Collection",
+      "description": "Explore our new winter collection.",
+      "cta": "See Collection",
+      "image": "/images/winter-collection.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/15/square.png"
+    }
+  ]
+}
