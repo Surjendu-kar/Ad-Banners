@@ -1,6 +1,7 @@
 {
   "banners": [
     {
+      "id": "1",
       "title": "Summer Sale",
       "description": "Don't miss out on our summer sale – up to 50% off!",
       "cta": "Shop Now",
@@ -11,6 +12,7 @@
       "ctaBgColor": "#FF6347"
     },
     {
+      "id": "2",
       "title": "New Arrivals",
       "description": "Check out our new arrivals for the season.",
       "cta": "Browse New Styles",
@@ -21,6 +23,7 @@
       "ctaBgColor": "#32CD32"
     },
     {
+      "id": "3",
       "title": "Exclusive Offer",
       "description": "Get exclusive access to our special offers.",
       "cta": "Learn More",
@@ -31,6 +34,7 @@
       "ctaBgColor": "#FF6347"
     },
     {
+      "id": "4",
       "title": "Winter Collection",
       "description": "Explore our new winter collection.",
       "cta": "See Collection",
@@ -41,6 +45,7 @@
       "ctaBgColor": "#32CD32"
     },
     {
+      "id": "5",
       "title": "Tech Gadgets Sale",
       "description": "Upgrade your tech with our latest gadgets on sale now!",
       "cta": "Shop Tech",
@@ -51,6 +56,7 @@
       "ctaBgColor": "#FF6347"
     },
     {
+      "id": "6",
       "title": "Fitness Essentials",
       "description": "Get fit with our best deals on fitness equipment and accessories.",
       "cta": "Get Fit",

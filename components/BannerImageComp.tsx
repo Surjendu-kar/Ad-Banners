@@ -1,8 +1,9 @@
-import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, IconButton } from "@mui/material";
 import { styled } from "@mui/system";
+import EditIcon from "@mui/icons-material/Edit";
 
 const MainContainer = styled(Box)(({ theme }) => ({
+  position: "relative",
   display: "flex",
   justifyContent: "space-around",
   alignItems: "center",
@@ -16,36 +17,29 @@ const MainContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {},
 }));
 
-const Img = styled("img")(({ theme }) => ({
-  width: "100%",
-  height: "200px",
-  objectFit: "cover",
-  background: "#ffff",
-  borderRadius: "7px",
-  [theme.breakpoints.down("lg")]: {},
-  [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
-}));
-
 const ContentContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  padding: "3rem",
+  // padding: "3rem",
   width: "40%",
+  height: "100%",
+  justifyContent: "space-around",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
   [theme.breakpoints.down("sm")]: {},
 }));
 
 const TitleTypography = styled(Typography)(({ theme }) => ({
-  fontSize: "1.75rem",
+  fontSize: "2rem",
+  fontWeight: 600,
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
   [theme.breakpoints.down("sm")]: {},
 }));
 
 const DescriptionTypography = styled(Typography)(({ theme }) => ({
-  fontSize: "1rem",
+  fontSize: "1.2rem",
+
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
   [theme.breakpoints.down("sm")]: {},
@@ -64,16 +58,20 @@ const StyledButton = styled(Button)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {},
 }));
 
-type BannerProps = {
-  title: string;
-  description: string;
-  cta: string;
-  image: string;
-  background: string;
-  titleColor: string;
-  ctaColor: string;
-  ctaBgColor: string;
-};
+const Img = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: "200px",
+  objectFit: "cover",
+  background: "#ffff",
+  borderRadius: "7px",
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("sm")]: {},
+}));
+
+interface BannerProps extends Banner {
+  onEdit: () => void;
+}
 
 const BannerImageComp: React.FC<BannerProps> = ({
   title,
@@ -84,9 +82,29 @@ const BannerImageComp: React.FC<BannerProps> = ({
   titleColor,
   ctaColor,
   ctaBgColor,
+  onEdit,
 }) => {
   return (
     <MainContainer sx={{ backgroundImage: `url(${background})` }}>
+      <IconButton
+        onClick={onEdit}
+        sx={{
+          position: "absolute",
+          top: 8,
+          right: 8,
+          color: "#000",
+          backgroundColor: "white",
+          borderRadius: "50%",
+          padding: "5px",
+          "&:hover": {
+            color: "white",
+            backgroundColor: "#808080bf",
+          },
+        }}
+      >
+        <EditIcon />
+      </IconButton>
+
       <ContentContainer>
         <TitleTypography sx={{ color: titleColor }}>{title}</TitleTypography>
         <DescriptionTypography sx={{ color: titleColor }}>
