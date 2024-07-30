@@ -5,28 +5,60 @@
       "description": "Don't miss out on our summer sale – up to 50% off!",
       "cta": "Shop Now",
       "image": "/images/summer-sale.jpg",
-      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/5/square.png"
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/5/square.png",
+      "titleColor": "#FFFFFF",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#FF6347"
     },
     {
       "title": "New Arrivals",
       "description": "Check out our new arrivals for the season.",
       "cta": "Browse New Styles",
       "image": "/images/new-arrivals.jpg",
-      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png"
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png",
+      "titleColor": "#000000",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#32CD32"
     },
     {
       "title": "Exclusive Offer",
       "description": "Get exclusive access to our special offers.",
       "cta": "Learn More",
       "image": "/images/exclusive-offer.jpg",
-      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/1/square.png"
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/1/square.png",
+      "titleColor": "#000000",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#FF6347"
     },
     {
       "title": "Winter Collection",
       "description": "Explore our new winter collection.",
       "cta": "See Collection",
       "image": "/images/winter-collection.jpg",
-      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/15/square.png"
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/15/square.png",
+      "titleColor": "#000000",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#32CD32"
+    },
+    {
+      "title": "Tech Gadgets Sale",
+      "description": "Upgrade your tech with our latest gadgets on sale now!",
+      "cta": "Shop Tech",
+      "image": "/images/tech-gadgets.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/13/square.png",
+      "titleColor": "#FFFFFF",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#FF6347"
+    },
+    {
+      "title": "Fitness Essentials",
+      "description": "Get fit with our best deals on fitness equipment and accessories.",
+      "cta": "Get Fit",
+      "image": "/images/fitness-essentials.jpg",
+      "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/4/square.png",
+      "titleColor": "#FFFFFF",
+      "ctaColor": "#ffff",
+      "ctaBgColor": "#32CD32"
     }
   ]
 }
