@@ -1,19 +1,23 @@
 import type { NextPage } from "next";
 import banners from "../data/banners.json";
 import BannerImageComp from "../components/BannerImageComp";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
+
+const MainContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 2,
+  margin: "1rem",
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("sm")]: {},
+}));
 
 const Home: NextPage = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
+    <MainContainer>
       {banners.banners.map((banner, index) => (
         <BannerImageComp
           key={index}
@@ -27,7 +31,7 @@ const Home: NextPage = () => {
           ctaBgColor={banner.ctaBgColor}
         />
       ))}
-    </Box>
+    </MainContainer>
   );
 };
 
