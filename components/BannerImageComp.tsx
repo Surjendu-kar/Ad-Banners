@@ -20,7 +20,6 @@ const MainContainer = styled(Box)(({ theme }) => ({
 const ContentContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  // padding: "3rem",
   width: "40%",
   height: "100%",
   justifyContent: "space-around",
@@ -70,7 +69,12 @@ const Img = styled("img")(({ theme }) => ({
 }));
 
 interface BannerProps extends Banner {
-  onEdit: () => void;
+  onEdit?: (() => void) | null;
+  titleStyle?: React.CSSProperties;
+  descriptionStyle?: React.CSSProperties;
+  mainContainerStyle?: React.CSSProperties;
+  imgStyle?: React.CSSProperties;
+  buttonStyle?: React.CSSProperties;
 }
 
 const BannerImageComp: React.FC<BannerProps> = ({
@@ -83,31 +87,41 @@ const BannerImageComp: React.FC<BannerProps> = ({
   ctaColor,
   ctaBgColor,
   onEdit,
+  titleStyle,
+  descriptionStyle,
+  mainContainerStyle,
+  imgStyle,
+  buttonStyle,
 }) => {
   return (
-    <MainContainer sx={{ backgroundImage: `url(${background})` }}>
-      <IconButton
-        onClick={onEdit}
-        sx={{
-          position: "absolute",
-          top: 8,
-          right: 8,
-          color: "#000",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          padding: "5px",
-          "&:hover": {
-            color: "white",
-            backgroundColor: "#808080bf",
-          },
-        }}
-      >
-        <EditIcon />
-      </IconButton>
-
+    <MainContainer
+      sx={{ backgroundImage: `url(${background})`, ...mainContainerStyle }}
+    >
+      {onEdit && (
+        <IconButton
+          onClick={onEdit}
+          sx={{
+            position: "absolute",
+            top: 8,
+            right: 8,
+            color: "#000",
+            backgroundColor: "white",
+            borderRadius: "50%",
+            padding: "5px",
+            "&:hover": {
+              color: "white",
+              backgroundColor: "#808080bf",
+            },
+          }}
+        >
+          <EditIcon />
+        </IconButton>
+      )}
       <ContentContainer>
-        <TitleTypography sx={{ color: titleColor }}>{title}</TitleTypography>
-        <DescriptionTypography sx={{ color: titleColor }}>
+        <TitleTypography sx={{ color: titleColor, ...titleStyle }}>
+          {title}
+        </TitleTypography>
+        <DescriptionTypography sx={{ color: titleColor, ...descriptionStyle }}>
           {description}
         </DescriptionTypography>
         <ButtonContainer>
@@ -122,6 +136,7 @@ const BannerImageComp: React.FC<BannerProps> = ({
                 background: ctaColor,
                 opacity: 0.9,
               },
+              ...buttonStyle,
             }}
           >
             {cta}
@@ -129,7 +144,7 @@ const BannerImageComp: React.FC<BannerProps> = ({
         </ButtonContainer>
       </ContentContainer>
       <Box>
-        <Img src={image} alt={title} />
+        <Img src={image} alt={title} sx={{ ...imgStyle }} />
       </Box>
     </MainContainer>
   );

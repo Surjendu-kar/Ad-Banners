@@ -50,7 +50,7 @@ const BannerManager: React.FC<BannerManagerProps> = ({
       banner.id === updatedBanner.id ? updatedBanner : banner
     );
     setBanners(updatedBanners);
-    localStorage.setItem("banners", JSON.stringify(updatedBanners));
+    localStorage.setItem("banners", JSON.stringify(updatedBanners)); // store the edit data in localStorage
     handleClose();
   };
 
@@ -58,6 +58,8 @@ const BannerManager: React.FC<BannerManagerProps> = ({
     localStorage.removeItem("banners");
     setBanners(initialBanners);
   };
+
+  const allBannerImages = banners.map((banner) => banner.image);
 
   return (
     <>
@@ -82,6 +84,7 @@ const BannerManager: React.FC<BannerManagerProps> = ({
             onClose={handleClose}
             banner={editBanner}
             onSave={handleSaveChanges}
+            allBannerImages={allBannerImages}
           />
         )}
       </MainContainer>
