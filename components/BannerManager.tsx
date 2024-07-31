@@ -12,7 +12,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
   margin: "1rem",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { margin: "0.2rem" },
 }));
 
 interface BannerManagerProps {

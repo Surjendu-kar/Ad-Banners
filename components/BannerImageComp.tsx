@@ -1,4 +1,4 @@
-import { Box, Button, Typography, IconButton } from "@mui/material";
+import { Box, Button, Typography, IconButton, Tooltip } from "@mui/material";
 import { styled } from "@mui/system";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -14,7 +14,27 @@ const MainContainer = styled(Box)(({ theme }) => ({
   padding: "1rem",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { height: "150px", width: "650px" },
+}));
+
+const Icon = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: 8,
+  right: 8,
+  color: "#000",
+  backgroundColor: "white",
+  borderRadius: "50%",
+  padding: "5px",
+  "&:hover": {
+    color: "white",
+    backgroundColor: "#808080bf",
+  },
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("sm")]: {
+    padding: "3px",
+    fontSize: "small",
+  },
 }));
 
 const ContentContainer = styled(Box)(({ theme }) => ({
@@ -25,7 +45,7 @@ const ContentContainer = styled(Box)(({ theme }) => ({
   justifyContent: "space-around",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { width: "50%" },
 }));
 
 const TitleTypography = styled(Typography)(({ theme }) => ({
@@ -33,15 +53,14 @@ const TitleTypography = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { fontSize: "1.2rem" },
 }));
 
 const DescriptionTypography = styled(Typography)(({ theme }) => ({
   fontSize: "1.2rem",
-
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { fontSize: "0.75rem" },
 }));
 
 const ButtonContainer = styled(Box)(({ theme }) => ({
@@ -51,10 +70,13 @@ const ButtonContainer = styled(Box)(({ theme }) => ({
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(2),
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.5rem",
+    padding: "2px 4px",
+    borderRadius: "2px",
+  },
 }));
 
 const Img = styled("img")(({ theme }) => ({
@@ -65,7 +87,7 @@ const Img = styled("img")(({ theme }) => ({
   borderRadius: "7px",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: {},
+  [theme.breakpoints.down("sm")]: { height: "100px" },
 }));
 
 interface BannerProps extends Banner {
@@ -98,24 +120,11 @@ const BannerImageComp: React.FC<BannerProps> = ({
       sx={{ backgroundImage: `url(${background})`, ...mainContainerStyle }}
     >
       {onEdit && (
-        <IconButton
-          onClick={onEdit}
-          sx={{
-            position: "absolute",
-            top: 8,
-            right: 8,
-            color: "#000",
-            backgroundColor: "white",
-            borderRadius: "50%",
-            padding: "5px",
-            "&:hover": {
-              color: "white",
-              backgroundColor: "#808080bf",
-            },
-          }}
-        >
-          <EditIcon />
-        </IconButton>
+        <Icon onClick={onEdit}>
+          <Tooltip title="Edit">
+            <EditIcon />
+          </Tooltip>
+        </Icon>
       )}
       <ContentContainer>
         <TitleTypography sx={{ color: titleColor, ...titleStyle }}>

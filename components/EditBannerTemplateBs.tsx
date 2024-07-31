@@ -9,6 +9,7 @@ import {
   Box,
   Avatar,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ImageIcon from "@mui/icons-material/Image";
@@ -80,6 +81,8 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
     onClose();
   };
 
+  const handleDownload = () => {};
+
   return (
     <Dialog
       open={open}
@@ -133,24 +136,29 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
         />
       </Box>
 
-      <DialogContent sx={{ overflowY: "auto" }}>
+      <DialogContent sx={{ overflowY: "auto", padding: "0px 24px 20px" }}>
+        <Typography sx={{ margin: "1rem 0", fontWeight: 600 }}>
+          Images:
+        </Typography>
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center",
+            overflowX: "scroll",
             gap: 2,
-            mb: 2,
-            flexWrap: "wrap",
+            mb: 1,
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
           }}
         >
           <Tooltip title="Upload Image">
             <Avatar
               component="label"
               sx={{
-                width: 48,
-                height: 48,
+                width: 65,
+                height: 65,
                 bgcolor: "grey.200",
                 display: "flex",
                 justifyContent: "center",
@@ -174,8 +182,8 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
               src={image}
               alt={`Image ${index + 1}`}
               sx={{
-                width: 48,
-                height: 48,
+                width: 65,
+                height: 65,
                 border: "3px solid",
                 borderColor:
                   image === selectedImage ? "primary.main" : "grey.300",
@@ -237,7 +245,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
           </Button>
           <Button
             variant="contained"
-            onClick={handleSave}
+            onClick={handleDownload}
             sx={{
               background: "white",
               color: "#1976d2",
