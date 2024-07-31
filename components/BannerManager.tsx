@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, styled } from "@mui/material";
 import BannerImageComp from "./BannerImageComp";
 import EditBannerTemplateBs from "./EditBannerTemplateBs";
@@ -17,9 +17,18 @@ const MainContainer = styled(Box)(({ theme }) => ({
 }));
 
 const BannerManager: React.FC = () => {
-  const [banners, setBanners] = useState<Banner[]>(bannersData.banners);
+  const [banners, setBanners] = useState<Banner[]>([]);
   const [editBanner, setEditBanner] = useState<Banner | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
+
+  useEffect(() => {
+    const storedBanners = localStorage.getItem("banners");
+    if (storedBanners) {
+      setBanners(JSON.parse(storedBanners));
+    } else {
+      setBanners(bannersData.banners);
+    }
+  }, []);
 
   const handleEditClick = (banner: Banner) => {
     setEditBanner(banner);
@@ -36,6 +45,7 @@ const BannerManager: React.FC = () => {
       banner.id === updatedBanner.id ? updatedBanner : banner
     );
     setBanners(updatedBanners);
+    localStorage.setItem("banners", JSON.stringify(updatedBanners));
     handleClose();
   };
   return (
