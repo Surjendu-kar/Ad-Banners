@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Box, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import BannerImageComp from "./BannerImageComp";
 import EditBannerTemplateBs from "./EditBannerTemplateBs";
-import bannersData from "../data/banners.json";
 
 const MainContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -16,7 +15,13 @@ const MainContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {},
 }));
 
-const BannerManager: React.FC = () => {
+interface BannerManagerProps {
+  banners: Banner[];
+}
+
+const BannerManager: React.FC<BannerManagerProps> = ({
+  banners: initialBanners,
+}) => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [editBanner, setEditBanner] = useState<Banner | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -26,9 +31,9 @@ const BannerManager: React.FC = () => {
     if (storedBanners) {
       setBanners(JSON.parse(storedBanners));
     } else {
-      setBanners(bannersData.banners);
+      setBanners(initialBanners);
     }
-  }, []);
+  }, [initialBanners]);
 
   const handleEditClick = (banner: Banner) => {
     setEditBanner(banner);
@@ -41,31 +46,46 @@ const BannerManager: React.FC = () => {
   };
 
   const handleSaveChanges = (updatedBanner: Banner) => {
-    const updatedBanners = banners.map((banner) =>
+    const updatedBanners = banners?.map((banner) =>
       banner.id === updatedBanner.id ? updatedBanner : banner
     );
     setBanners(updatedBanners);
     localStorage.setItem("banners", JSON.stringify(updatedBanners));
     handleClose();
   };
+
+  const handleClearBanners = () => {
+    localStorage.removeItem("banners");
+    setBanners(initialBanners);
+  };
+
   return (
-    <MainContainer>
-      {banners.map((banner) => (
-        <BannerImageComp
-          key={banner.id}
-          {...banner}
-          onEdit={() => handleEditClick(banner)}
-        />
-      ))}
-      {isEditOpen && editBanner && (
-        <EditBannerTemplateBs
-          open={isEditOpen}
-          onClose={handleClose}
-          banner={editBanner}
-          onSave={handleSaveChanges}
-        />
-      )}
-    </MainContainer>
+    <>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleClearBanners}
+      >
+        Reset Banners
+      </Button>
+      <MainContainer>
+        {banners?.map((banner) => (
+          <BannerImageComp
+            key={banner.id}
+            {...banner}
+            onEdit={() => handleEditClick(banner)}
+          />
+        ))}
+        {isEditOpen && editBanner && (
+          <EditBannerTemplateBs
+            open={isEditOpen}
+            onClose={handleClose}
+            banner={editBanner}
+            onSave={handleSaveChanges}
+          />
+        )}
+      </MainContainer>
+    </>
   );
 };
 
