@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, styled } from "@mui/material";
 import BannerImageComp from "./BannerImageComp";
-import EditBannerTemplateBs from "./EditBannerTemplateBs";
+import EditBannerTemplateBs from "./EditBanner/EditBannerTemplateBs";
 
 const MainContainer = styled(Box)(({ theme }) => ({
   display: "flex",
