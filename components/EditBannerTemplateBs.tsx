@@ -14,6 +14,26 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import ImageIcon from "@mui/icons-material/Image";
 import BannerImageComp from "./BannerImageComp";
+import { styled } from "@mui/system";
+
+const Heading = styled(DialogTitle)(({ theme }) => ({
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1rem",
+    padding: "10px",
+  },
+}));
+
+const DialogContentStyle = styled(DialogContent)(({ theme }) => ({
+  overflowY: "auto",
+  padding: "0px 24px 20px",
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
+  [theme.breakpoints.down("sm")]: {
+    padding: "0px 10px 15px",
+  },
+}));
 
 type EditBannerTemplateBsProps = {
   open: boolean;
@@ -97,7 +117,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
         },
       }}
     >
-      <DialogTitle>
+      <Heading>
         Edit Banner
         <IconButton
           onClick={onClose}
@@ -110,7 +130,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
         >
           <CloseIcon />
         </IconButton>
-      </DialogTitle>
+      </Heading>
 
       <Box display={"flex"} justifyContent={"center"}>
         <BannerImageComp
@@ -136,7 +156,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
         />
       </Box>
 
-      <DialogContent sx={{ overflowY: "auto", padding: "0px 24px 20px" }}>
+      <DialogContentStyle>
         <Typography sx={{ margin: "1rem 0", fontWeight: 600 }}>
           Images:
         </Typography>
@@ -258,7 +278,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
             Download
           </Button>
         </Box>
-      </DialogContent>
+      </DialogContentStyle>
     </Dialog>
   );
 };
