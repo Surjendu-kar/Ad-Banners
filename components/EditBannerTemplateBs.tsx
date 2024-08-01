@@ -16,6 +16,10 @@ import ImageIcon from "@mui/icons-material/Image";
 import BannerImageComp from "./BannerImageComp";
 import { styled } from "@mui/system";
 
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+
 const Heading = styled(DialogTitle)(({ theme }) => ({
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
@@ -48,6 +52,7 @@ type EditBannerTemplateBsProps = {
     titleColor: string;
     ctaColor: string;
     ctaBgColor: string;
+    imageBorderRadius?: string;
   };
   onSave: (data: any) => void;
   allBannerImages: string[];
@@ -60,11 +65,15 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
   onSave,
   allBannerImages,
 }) => {
-  const [formData, setFormData] = useState(banner);
+  const [formData, setFormData] = useState({
+    ...banner,
+    imageBorderRadius: banner.imageBorderRadius || "7px",
+  });
   const [selectedImage, setSelectedImage] = useState(banner.image);
   const [selectedBackground, setSelectedBackground] = useState(
     banner.background
   );
+  const [selectedBorderRadius, setSelectedBorderRadius] = useState("7px");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -99,6 +108,16 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
   const handleSave = () => {
     onSave(formData);
     onClose();
+  };
+
+  const handleBorderRadiusChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSelectedBorderRadius(event.target.value);
+    setFormData({
+      ...formData,
+      imageBorderRadius: event.target.value,
+    });
   };
 
   const handleDownload = () => {};
@@ -152,6 +171,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
             width: "520px",
           }}
           imgStyle={{ maxHeight: "110px" }}
+          imageBorderRadius={formData.imageBorderRadius}
           buttonStyle={{ fontSize: "12px" }}
         />
       </Box>
@@ -214,6 +234,19 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
             />
           ))}
         </Box>
+
+        <Typography sx={{ marginTop: "0.7rem", fontWeight: 600 }}>
+          Image Border Radius:
+        </Typography>
+        <RadioGroup
+          row
+          value={selectedBorderRadius}
+          onChange={handleBorderRadiusChange}
+        >
+          <FormControlLabel value="0px" control={<Radio />} label="Square" />
+          <FormControlLabel value="7px" control={<Radio />} label="Rounded" />
+          <FormControlLabel value="50%" control={<Radio />} label="Circle" />
+        </RadioGroup>
         <TextField
           label="Title"
           variant="outlined"

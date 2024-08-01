@@ -79,17 +79,18 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const Img = styled("img")(({ theme }) => ({
-  width: "100%",
-  height: "200px",
-  objectFit: "cover",
-  background: "#ffff",
-  borderRadius: "7px",
-  [theme.breakpoints.down("lg")]: {},
-  [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: { height: "100px" },
-}));
-
+const Img = styled("img")<{ borderRadius?: string }>(
+  ({ theme, borderRadius }) => ({
+    width: "100%",
+    height: "200px",
+    objectFit: "cover",
+    background: "#ffff",
+    borderRadius: borderRadius || "7px",
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("sm")]: { height: "100px" },
+  })
+);
 interface BannerProps extends Banner {
   onEdit?: (() => void) | null;
   titleStyle?: React.CSSProperties;
@@ -97,6 +98,7 @@ interface BannerProps extends Banner {
   mainContainerStyle?: React.CSSProperties;
   imgStyle?: React.CSSProperties;
   buttonStyle?: React.CSSProperties;
+  imageBorderRadius?: string;
 }
 
 const BannerImageComp: React.FC<BannerProps> = ({
@@ -114,6 +116,7 @@ const BannerImageComp: React.FC<BannerProps> = ({
   mainContainerStyle,
   imgStyle,
   buttonStyle,
+  imageBorderRadius,
 }) => {
   return (
     <MainContainer
@@ -153,7 +156,12 @@ const BannerImageComp: React.FC<BannerProps> = ({
         </ButtonContainer>
       </ContentContainer>
       <Box>
-        <Img src={image} alt={title} sx={{ ...imgStyle }} />
+        <Img
+          src={image}
+          alt={title}
+          borderRadius={imageBorderRadius}
+          sx={imgStyle}
+        />
       </Box>
     </MainContainer>
   );
