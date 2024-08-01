@@ -8,4 +8,5 @@ interface Banner {
   titleColor: string;
   ctaColor: string;
   ctaBgColor: string;
+  imageBorderRadius?: string;
 }

@@ -15,10 +15,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import ImageIcon from "@mui/icons-material/Image";
 import BannerImageComp from "./BannerImageComp";
 import { styled } from "@mui/system";
-
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
+import BorderRadiusComp from "./BorderRadiusComp";
 
 const Heading = styled(DialogTitle)(({ theme }) => ({
   [theme.breakpoints.down("lg")]: {},
@@ -38,6 +36,30 @@ const DialogContentStyle = styled(DialogContent)(({ theme }) => ({
     padding: "0px 10px 15px",
   },
 }));
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  "& .MuiOutlinedInput-root": {
+    fontSize: "1rem",
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.875rem",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    fontSize: "1rem",
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.875rem",
+    },
+  },
+  margin: theme.spacing(1, 0),
+}));
+StyledTextField.defaultProps = {
+  variant: "outlined",
+  fullWidth: true,
+};
 
 type EditBannerTemplateBsProps = {
   open: boolean;
@@ -73,7 +95,9 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
   const [selectedBackground, setSelectedBackground] = useState(
     banner.background
   );
-  const [selectedBorderRadius, setSelectedBorderRadius] = useState("7px");
+  const [selectedBorderRadius, setSelectedBorderRadius] = useState(
+    banner.imageBorderRadius || "7px"
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -114,10 +138,10 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSelectedBorderRadius(event.target.value);
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       imageBorderRadius: event.target.value,
-    });
+    }));
   };
 
   const handleDownload = () => {};
@@ -238,38 +262,66 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
         <Typography sx={{ marginTop: "0.7rem", fontWeight: 600 }}>
           Image Border Radius:
         </Typography>
-        <RadioGroup
-          row
-          value={selectedBorderRadius}
-          onChange={handleBorderRadiusChange}
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            overflowX: "auto",
+            margin: "0.5rem 0",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
         >
-          <FormControlLabel value="0px" control={<Radio />} label="Square" />
-          <FormControlLabel value="7px" control={<Radio />} label="Rounded" />
-          <FormControlLabel value="50%" control={<Radio />} label="Circle" />
-        </RadioGroup>
-        <TextField
+          <RadioGroup
+            row
+            value={selectedBorderRadius}
+            onChange={handleBorderRadiusChange}
+            sx={{
+              flexWrap: "nowrap",
+            }}
+          >
+            <BorderRadiusComp value="0px" borderRadiusStyle="0" />
+            <BorderRadiusComp value="7px" borderRadiusStyle="7px" />
+            <BorderRadiusComp value="15px" borderRadiusStyle="15px" />
+            <BorderRadiusComp value="50%" borderRadiusStyle="50%" />
+            <BorderRadiusComp
+              value="0 15px 15px 0"
+              borderRadiusStyle="0 15px 15px 0"
+            />
+            <BorderRadiusComp
+              value="15px 0 0 15px"
+              borderRadiusStyle="15px 0 0 15px"
+            />
+            <BorderRadiusComp
+              value="50% 15px 15px 50%"
+              borderRadiusStyle="50% 15px 15px 50%"
+            />
+            <BorderRadiusComp
+              value="15px 50% 50% 15px"
+              borderRadiusStyle="15px 50% 50% 15px"
+            />
+          </RadioGroup>
+        </Box>
+
+        <StyledTextField
           label="Title"
-          variant="outlined"
-          fullWidth
-          margin="normal"
           name="title"
           value={formData.title}
           onChange={handleChange}
         />
-        <TextField
+
+        <StyledTextField
           label="Description"
-          variant="outlined"
-          fullWidth
-          margin="normal"
           name="description"
           value={formData.description}
           onChange={handleChange}
         />
-        <TextField
+
+        <StyledTextField
           label="Call to Action"
-          variant="outlined"
-          fullWidth
-          margin="normal"
           name="cta"
           value={formData.cta}
           onChange={handleChange}
