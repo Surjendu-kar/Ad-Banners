@@ -2,20 +2,25 @@ import { Box, Button, Typography, IconButton, Tooltip } from "@mui/material";
 import { styled } from "@mui/system";
 import EditIcon from "@mui/icons-material/Edit";
 
-const MainContainer = styled(Box)(({ theme }) => ({
-  position: "relative",
-  display: "flex",
-  justifyContent: "space-around",
-  alignItems: "center",
-  backgroundSize: "cover",
-  overflow: "hidden",
-  height: "300px",
-  width: "650px",
-  padding: "1rem",
-  [theme.breakpoints.down("lg")]: {},
-  [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: { height: "150px", width: "auto" },
-}));
+const MainContainer = styled(Box)<{ onEdit?: (() => void) | null }>(
+  ({ theme, onEdit }) => ({
+    position: "relative",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundSize: "cover",
+    overflow: "hidden",
+    height: "300px",
+    width: "650px",
+    padding: "1rem",
+    [theme.breakpoints.down("lg")]: {},
+    [theme.breakpoints.down("md")]: {},
+    [theme.breakpoints.down("sm")]: {
+      height: "150px",
+      width: onEdit ? "100%" : "auto",
+    },
+  })
+);
 
 const Icon = styled(IconButton)(({ theme }) => ({
   position: "absolute",
@@ -120,6 +125,7 @@ const BannerImageComp: React.FC<BannerProps> = ({
 }) => {
   return (
     <MainContainer
+      onEdit={onEdit}
       sx={{ backgroundImage: `url(${background})`, ...mainContainerStyle }}
     >
       {onEdit && (
