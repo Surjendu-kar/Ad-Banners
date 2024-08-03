@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,6 +6,7 @@ import {
   IconButton,
   Box,
 } from "@mui/material";
+import { toPng } from "html-to-image";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/system";
 import BannerFormComponent from "./BannerFormComponent";
@@ -115,7 +116,22 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
     }));
   };
 
-  const handleDownload = () => {};
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  const handleDownload = () => {
+    if (componentRef.current) {
+      toPng(componentRef.current, { cacheBust: true })
+        .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.download = `banner_${formData.id}.png`;
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch((err) => {
+          console.error("Error exporting image:", err);
+        });
+    }
+  };
 
   return (
     <Dialog
@@ -148,6 +164,7 @@ const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({
 
       <Box display={"flex"} justifyContent={"center"}>
         <BannerPreviewComponent
+          ref={componentRef}
           formData={formData}
           selectedImage={selectedImage}
           selectedBackground={selectedBackground}
