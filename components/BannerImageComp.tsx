@@ -14,7 +14,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
   padding: "1rem",
   [theme.breakpoints.down("lg")]: {},
   [theme.breakpoints.down("md")]: {},
-  [theme.breakpoints.down("sm")]: { height: "150px", width: "650px" },
+  [theme.breakpoints.down("sm")]: { height: "150px", width: "auto" },
 }));
 
 const Icon = styled(IconButton)(({ theme }) => ({
