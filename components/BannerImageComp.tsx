@@ -146,6 +146,7 @@ const BannerImageComp: React.FC<BannerProps> = ({
           <StyledButton
             variant="contained"
             sx={{
+              textTransform: "capitalize",
               color: ctaColor,
               background: ctaBgColor,
 

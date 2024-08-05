@@ -75,25 +75,28 @@ const BannerFormComponent: React.FC<BannerFormProps> = ({
       <Button
         variant="contained"
         onClick={handleSave}
+        disableElevation
         sx={{
-          background: "#0b5531",
+          textTransform: "capitalize",
+          background: "#0b554f",
           "&:hover": {
             background: "white",
-            color: "#0b5531",
+            color: "#0b554f",
           },
         }}
       >
         Done
       </Button>
       <Button
-        variant="contained"
+        variant="text"
+        disableElevation
         onClick={handleDownload}
         sx={{
+          textTransform: "capitalize",
           background: "white",
-          color: "#1976d2",
+          color: "#0b554f",
           "&:hover": {
-            background: "#1976d2",
-            color: "white",
+            background: "#a1a1a126",
           },
         }}
       >
