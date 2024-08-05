@@ -20,7 +20,7 @@
       "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/9/square.png",
       "titleColor": "#000000",
       "ctaColor": "#ffff",
-      "ctaBgColor": "#32CD32"
+      "ctaBgColor": "#FF6347"
     },
     {
       "id": "3",
@@ -42,7 +42,7 @@
       "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/15/square.png",
       "titleColor": "#000000",
       "ctaColor": "#ffff",
-      "ctaBgColor": "#32CD32"
+      "ctaBgColor": "#FF6347"
     },
     {
       "id": "5",
@@ -64,7 +64,7 @@
       "background": "https://bannerbot-public.s3.ap-south-1.amazonaws.com/templates/4/square.png",
       "titleColor": "#FFFFFF",
       "ctaColor": "#ffff",
-      "ctaBgColor": "#32CD32"
+      "ctaBgColor": "#FF6347"
     }
   ]
 }
