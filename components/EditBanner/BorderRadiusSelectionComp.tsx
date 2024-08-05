@@ -16,7 +16,7 @@ const BorderRadiusSelectionComp: FC<BorderRadiusSelectionProps> = ({
   return (
     <>
       <Typography sx={{ marginTop: "0.7rem", fontWeight: 600 }}>
-        Image Border Radius:
+        Choose Shape:
       </Typography>
 
       <Box
